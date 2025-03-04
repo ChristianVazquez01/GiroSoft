@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="box">
+    <img src="../../assets/icon/icon.png" class="profile" height="100px" width="100px">
+    <h2>Inicio de Sesion</h2>
+ 
+    <form>
+      
+        <p class="lable">Usuario</p>
+        <input type="email" placeholder="Correo" id="usuario" required>
+        <p class="lable">Contraseña</p>
+        <input type="password" placeholder="Contraseña" id="contraseña" required>       
+        <button class="submit" (click)="nav('/panel')">Ingresar</button>
+        
+      
+     
+    </form>
+    <a href="#" class="forpas">Olvidaste tu contraseña?</a>
+  </div><div class="circle">
+    <h1></h1>
+  </div>
+  
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header class="header">
+  <ion-toolbar  > 
+    <img src="../../assets/icon/girolog.png" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+<section class="container">
+  <div class="content" >
+    <h1 class="titulo">Bienvenido a GiroSoft</h1>
+  </div>
+  <button (click)="nav('/login')" class="button">Iniciar</button>
+</section>
+<footer>
+  <div class="sec izq">
+    <h1>Redes Sociales</h1>
+    
+    <div class="icons">
+      <a href="https://www.facebook.com/">
+        <ion-icon name="logo-facebook" class="icon facebook"></ion-icon>
+      </a>
+      <a href="https://www.instagram.com/">
+        <ion-icon name="logo-instagram" class="icon instagram" ></ion-icon>
+      </a>
+      <a href="https://www.x.com/">
+        <ion-icon name="logo-x" class="icon x"></ion-icon>
+      </a>
+    
+  
+    </div>
+  </div>
+  <div class="sec">
+    <h1>¿Quienes somos?</h1>
+    <p class="text">En GiroSoft, nos dedicamos a la gestión eficiente de almacenes 
+       para múltiples sucursales, asegurando control, optimización y
+       disponibilidad de inventarios en todo momento.</p>
+  </div>
+  <div class="sec der">
+    <h1>Contactanos</h1>
+    <input type="text" placeholder="Comentario"><br>
+    <button class="btn">Enviar</button>
+  </div>
+</footer>
+  
+</ion-content>
