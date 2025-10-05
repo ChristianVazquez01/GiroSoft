@@ -1,13 +1,177 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>panel</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <div class="dashboard-container">
+    <!-- Sidebar izquierdo estático -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Panel</h2>
+      </div>
+      
+      <ion-list class="menu-items" >
+        <ion-item class="menu-item active" (click)="nav('/panel')">
+          <ion-icon name="home" slot="start"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item"(click)="nav('/entrada')">
+          <ion-icon name="add-sharp" slot="start"></ion-icon>
+          <ion-label>Agregar material</ion-label>
+        </ion-item>
+        <!--
+        <ion-item class="menu-item" (click)="nav('/material')">
+          <ion-icon name="cube" slot="start"></ion-icon>
+          <ion-label>Materiales</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item"(click)="nav('/almacen')">
+          <ion-icon name="archive" slot="start"></ion-icon>
+          <ion-label>Almacén</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item"(click)="nav('/configuracion')">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <ion-label>Configuración</ion-label>
+        </ion-item>-->
+      </ion-list>
+    </aside>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">panel</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <!-- Header -->
+      <ion-header>
+        <ion-toolbar>
+          <img src="../../assets/icon/girolog.png" alt="">
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="nav('/home')">
+              <ion-icon name="log-out-outline" ></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <!-- Tarjetas de resumen -->
+        <div class="summary-cards">
+          <ion-card>
+            <iframe 
+  srcdoc="
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body {
+          margin: 0;
+          padding: 15px;
+          font-family: Arial, sans-serif;
+          background: #f5f5f5;
+          text-align: center;
+        }
+        .fecha {
+          font-size: 1.2rem;
+          color: #555;
+          margin-bottom: 8px;
+        }
+        .hora {
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: #222;
+        }
+      </style>
+    </head>
+    <body>
+      <div class='fecha' id='fecha'></div>
+      <div class='hora' id='hora'></div>
+      <script>
+        function actualizarReloj() {
+          const ahora = new Date();
+          document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          });
+          document.getElementById('hora').textContent = ahora.toLocaleTimeString('es-ES', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+          });
+          setTimeout(actualizarReloj, 1000);
+        }
+        actualizarReloj();
+      </script>
+    </body>
+    </html>
+  "
+  width="100%" 
+  height="100%"
+  frameborder="0"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Añadir Usuario</ion-card-title>
+              <ion-icon name="person-add-sharp"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              <h2></h2>
+              <p></p>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Generar Reporte</ion-card-title>
+              <ion-icon name="documents-sharp"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              <h2></h2>
+              <p></p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <!-- Gráficos y tablas -->
+        <ion-card class="main-card">
+          <ion-card-header>
+            <ion-card-title>BIENVENIDO</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div id="clima-salamanca" style="font-family: Arial; background: #f0f8ff; padding: 15px; border-radius: 10px; max-width: 300px;">
+  <h3 style="color: #1e88e5; margin-top: 0;">Clima en Salamanca, Gto.</h3>
+  <div id="resultado-clima">Cargando datos del clima...</div>
+</div>
+
+<script>
+  const apiKey = "a2308cb1003d3f95b363f5956febeffe";  // Tu API Key
+  const ciudadId = "3986984";  // ID de Salamanca, Gto.
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?id=${ciudadId}&units=metric&lang=es&appid=${apiKey}`)
+    .then(response => {
+      if (!response.ok) throw new Error("Error en la respuesta");
+      return response.json();
+    })
+    .then(data => {
+      const climaHTML = `
+        <p>🌡️ <b>Temperatura:</b> ${data.main.temp}°C</p>
+        <p>☁️ <b>Condición:</b> ${data.weather[0].description}</p>
+        <p>💧 <b>Humedad:</b> ${data.main.humidity}%</p>
+        <p>🌬️ <b>Viento:</b> ${data.wind.speed} km/h</p>
+      `;
+      document.getElementById("resultado-clima").innerHTML = climaHTML;
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("resultado-clima").innerHTML = "No se pudo cargar el clima. Actualiza la página.";
+    });
+</script>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </main>
+  </div>
+</ion-app>

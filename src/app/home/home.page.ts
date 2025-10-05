@@ -10,3 +10,4 @@ export class HomePage {
     this.redireccionamiento.redireccion(data);
   }
 }
+  

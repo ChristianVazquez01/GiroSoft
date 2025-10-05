@@ -19,6 +19,22 @@ const routes: Routes = [
     path: 'panel',
     loadChildren: () => import('./panel/panel.module').then( m => m.PanelPageModule)
   },
+  {
+    path: 'entrada',
+    loadChildren: () => import('./entrada/entrada.module').then( m => m.EntradaPageModule)
+  },
+  {
+    path: 'material',
+    loadChildren: () => import('./material/material.module').then( m => m.MaterialPageModule)
+  },
+  {
+    path: 'almacen',
+    loadChildren: () => import('./almacen/almacen.module').then( m => m.AlmacenPageModule)
+  },
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RedireccionamientoService} from '../services/redireccionamiento.service'
 
 @Component({
   selector: 'app-panel',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelPage implements OnInit {
 
-  constructor() { }
-
+ constructor(private redireccionamiento: RedireccionamientoService) {}
+     nav (data:string){
+     this.redireccionamiento.redireccion(data);
+   }
   ngOnInit() {
   }
 

@@ -1,6 +1,6 @@
 {
-    "recommendations": [
-      "ionic.ionic",
-      "github.codespaces"
-    ]
+  "recommendations": [
+    "github.codespaces",
+    "Webnative.webnative"
+  ]
 }

@@ -9,10 +9,12 @@
 <section class="container">
   <div class="content" >
     <h1 class="titulo">Bienvenido a GiroSoft</h1>
+    <button (click)="nav('/login')" class="button">Iniciar</button>
   </div>
-  <button (click)="nav('/login')" class="button">Iniciar</button>
+  
 </section>
-<footer>
+<ion-footer>
+
   <div class="sec izq">
     <h1>Redes Sociales</h1>
     
@@ -26,8 +28,6 @@
       <a href="https://www.x.com/">
         <ion-icon name="logo-x" class="icon x"></ion-icon>
       </a>
-    
-  
     </div>
   </div>
   <div class="sec">
@@ -41,6 +41,7 @@
     <input type="text" placeholder="Comentario"><br>
     <button class="btn">Enviar</button>
   </div>
-</footer>
+
+</ion-footer>
   
 </ion-content>

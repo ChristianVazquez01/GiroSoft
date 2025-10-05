@@ -1,0 +1,106 @@
+<ion-app>
+  <div class="dashboard-container">
+    <!-- Sidebar izquierdo estático -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Panel</h2>
+      </div>
+      
+      <ion-list class="menu-items" >
+        <ion-item class="menu-item" (click)="nav('/panel')">
+          <ion-icon name="home" slot="start"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item"(click)="nav('/entrada')">
+          <ion-icon name="add-sharp" slot="start"></ion-icon>
+          <ion-label>Agregar material</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item" (click)="nav('/material')">
+          <ion-icon name="cube" slot="start"></ion-icon>
+          <ion-label>Materiales</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item"(click)="nav('/almacen')">
+          <ion-icon name="archive" slot="start"></ion-icon>
+          <ion-label>Almacén</ion-label>
+        </ion-item>
+        
+        <ion-item class="menu-item active"(click)="nav('/configuracion')">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <ion-label>Configuración</ion-label>
+        </ion-item>
+      </ion-list>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <!-- Header -->
+      <ion-header>
+        <ion-toolbar>
+          <img src="../../assets/icon/girolog.png" alt="">
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon name="notifications-outline"></ion-icon>
+            </ion-button>
+            <ion-button>
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <!-- Tarjetas de resumen 
+        <div class="summary-cards">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Almacen</ion-card-title>
+              <ion-icon name="file-tray-full-outline"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              <h2></h2>
+              <p></p>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Añadir Usuario</ion-card-title>
+              <ion-icon name="person-add-sharp"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              <h2></h2>
+              <p></p>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Generar Reporte</ion-card-title>
+              <ion-icon name="documents-sharp"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              <h2></h2>
+              <p></p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        
+        <ion-card class="main-card">
+          <ion-card-header>
+            <ion-card-title>BIENVENIDO</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="chart-placeholder">
+              
+              <p>Apii</p>
+            </div>
+          </ion-card-content>
+        </ion-card>-->
+      </ion-content>
+    </main>
+  </div>
+</ion-app>
