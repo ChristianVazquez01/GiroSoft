@@ -28,7 +28,7 @@ img{
   border-radius: 6px;
   
   height: 30px;
-  width: 70%;
+  width: 100%;
   color: #ffffff;
 }
 .button:hover{
@@ -54,6 +54,7 @@ ion-footer {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  color: #000;
   
   .sec {
     flex-grow: 1;

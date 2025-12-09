@@ -11,6 +11,7 @@
     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
       <ion-item>
         <ion-input 
+          id="email"
           type="email" 
           name="email" 
           ngModel
@@ -22,6 +23,7 @@
       
       <ion-item>
         <ion-input 
+          id="password"
           type="password" 
           name="password" 
           ngModel

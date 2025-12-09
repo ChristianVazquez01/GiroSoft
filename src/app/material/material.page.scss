@@ -187,3 +187,247 @@ img{
     }
   }
 }
+.cards-container {
+  display: flex;
+  gap: 20px;
+  padding: 350px;
+  transform: scale(0.7); /* Reduce todo un 30% */
+  transform-origin: top left;
+}
+:root {
+  --card-height: 800px;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+.card {
+  // width: var(--card-width);
+  // height: var(--card-height);
+  width: 30%;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 36px;
+  perspective: 2500px;
+  margin: 0 50px;
+  color: #f5f7fa;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper {
+  transition: all 0.5s;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.card:hover .wrapper {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+.wrapper::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+.wrapper::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+  opacity: 1;
+}
+
+.card:hover .wrapper::after {
+  height: 120px;
+}
+.title {
+  width: 100%;
+  transition: transform 0.5s;
+}
+.card:hover .title {
+  transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: -1;
+}
+    // tabla de stock
+.card:hover .character {
+  opacity: 3;
+  transform: translate3d(0%, -30%, 100px);
+}
+.table-container {
+  background: white;
+  border-radius: 1px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #e1e5e9;
+  
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezados */
+.modern-table thead {
+  background: linear-gradient(135deg, #3498DB   0%, #2C3E50 100%);
+}
+
+.modern-table th {
+  padding: 18px 16px;
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modern-table th h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Filas */
+.table-row {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+/* Celdas */
+.modern-table td {
+  padding: 16px;
+  color: #2d3748;
+  font-size: 14px;
+}
+
+/* Columnas específicas */
+.cell-id {
+  font-weight: 600;
+  color: #4a5568;
+  font-family: 'Courier New', monospace;
+}
+
+.cell-name {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.cell-status {
+  text-align: center;
+}
+
+.status-badge {
+  background: #e6fffa;
+  color: #234e52;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #81e6d9;
+}
+
+/* Iconos de acción */
+.cell-action {
+  text-align: center;
+  width: 60px;
+}
+
+.action-icon {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.edit-icon {
+  color: #4299e1;
+}
+
+.edit-icon:hover {
+  background: #ebf8ff;
+  color: #3182ce;
+  transform: scale(1.1);
+}
+
+.delete-icon {
+  color: #e53e3e;
+}
+
+.delete-icon:hover {
+  background: #fed7d7;
+  color: #c53030;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-container {
+    border-radius: 8px;
+    margin: 0 10px;
+  }
+  
+  .modern-table th,
+  .modern-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+  
+  .action-icon {
+    font-size: 18px;
+    padding: 6px;
+  }
+}

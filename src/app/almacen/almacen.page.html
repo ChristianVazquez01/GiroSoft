@@ -14,7 +14,7 @@
         
         <ion-item class="menu-item"(click)="nav('/entrada')">
           <ion-icon name="add-sharp" slot="start"></ion-icon>
-          <ion-label>Agregar material</ion-label>
+          <ion-label>Agregar material</ion-label> 
         </ion-item>
         
         <ion-item class="menu-item" (click)="nav('/material')">
@@ -27,10 +27,10 @@
           <ion-label>Almacén</ion-label>
         </ion-item>
         
-        <ion-item class="menu-item"(click)="nav('/configuracion')">
+        <!-- <ion-item class="menu-item"(click)="nav('/configuracion')">
           <ion-icon name="settings" slot="start"></ion-icon>
           <ion-label>Configuración</ion-label>
-        </ion-item>
+        </ion-item> -->
       </ion-list>
     </aside>
 
@@ -41,17 +41,104 @@
         <ion-toolbar>
           <img src="../../assets/icon/girolog.png" alt="">
           <ion-buttons slot="end">
-            <ion-button>
-              <ion-icon name="notifications-outline"></ion-icon>
-            </ion-button>
-            <ion-button>
+           <ion-button>
               <ion-icon name="person-circle-outline"></ion-icon>
+              <span>{{ nombreUsuario }}</span>
+            </ion-button>
+            <ion-button (click)="nav('/home')">
+              <ion-icon name="log-out-outline" ></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
+        <script src="https://use.fontawesome.com/bf66789927.js"></script>
+    <h1 class="stock">Historial de registro</h1>
+<table class="listado tabla-estilizada">
+  <thead class="tabla-cabecera">
+    <tr>
+      <th class="columna-id">ID</th>
+      <th class="columna-material">Material</th>
+      <th class="columna-cantidad">Cantidad</th>
+      <th class="columna-proveedor">Proveedor</th>
+      <th class="columna-fecha">Fecha</th>
+      <th class="columna-recibido">Recibido por</th>
+      <th class="columna-entregado">Entregado por</th>
+    </tr>
+  </thead>
+  <tbody class="tabla-cuerpo">
+    <tr *ngFor="let r of registros" class="fila-datos">
+      <td class="columna-id celda-dato">{{ r.reg_id }}</td>
+      <td class="columna-material celda-dato">{{ r.mat_nombre }}</td>
+      <td class="columna-cantidad celda-dato">{{ r.reg_cantidad }}</td>
+      <td class="columna-proveedor celda-dato">{{ r.prov_empresa }}</td>
+      <td class="columna-fecha celda-dato">{{ r.reg_fecha | date }}</td>
+      <td class="columna-recibido celda-dato">{{ r.enc_nombre }}</td>
+      <td class="columna-entregado celda-dato">{{ r.prov_nombre }}</td>
+    </tr>
+  </tbody>
+</table>
+		<!-- <table class="listado">
+			<thead>
+				<tr>
+          <th>ID</th>
+          <th>Material</th>
+          <th>Cantidad</th>
+          <th>Proveedor</th>
+          <th>Fecha</th>
+          <th>Recibido por</th>
+          <th>Entregado por</th>
+        </tr>
+			</thead>
+			<tbody>
+        <tr *ngFor="let r of registros">
+          <td>{{ r.reg_id }}</td>
+          <td>{{ r.mat_nombre }}</td>
+          <td>{{ r.reg_cantidad }}</td>
+          <td>{{ r.prov_empresa }}</td>
+          <td>{{ r.reg_fecha | date }} </td>
+          <td>{{ r.enc_nombre }}</td>
+          <td>{{ r.prov_nombre }}</td>
+        </tr>
+				
+			</tbody>
+		</table> -->
+    <!-- <tr>
+					<td>U001</td>
+					<td>Cemento</td>
+					<td>50 unidades</td>
+					<td class="icono"><ion-icon slot="icon-only" name="create-outline"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline"></ion-icon></td>
+				</tr>
+				<tr>
+					<td>U002</td>
+					<td>Mortero</td>
+					<td>1000 unidades</td>
+						<td class="icono"><ion-icon slot="icon-only" name="create-outline"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline"></ion-icon></td>
+				</tr>
+				<tr>
+					<td>U003</td>
+					<td>Varilla</td>
+					<td>10000 unidades</td>
+					<td class="icono"><ion-icon slot="icon-only" name="create-outline"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline"></ion-icon></td>
+				</tr>
+				<tr>
+					<td>U004</td>
+					<td>Cal</td>
+					<td>30 unidades</td>
+					<td class="icono"><ion-icon slot="icon-only" name="create-outline"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline"></ion-icon></td>
+				</tr>
+				<tr>
+					<td>U005</td>
+					<td>Block</td>
+					<td>2000 unidades</td>
+					<td class="icono"><ion-icon slot="icon-only" name="create-outline"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline"></ion-icon></td>
+				</tr> -->
         <!-- Tarjetas de resumen 
         <div class="summary-cards">
           <ion-card>

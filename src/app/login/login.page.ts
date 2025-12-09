@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { RedireccionamientoService } from '../services/redireccionamiento.service';
+import { LoginserviceService } from '../services/loginservice.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage {
     private router: Router,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private redireccionamiento: RedireccionamientoService
+    private redireccionamiento: RedireccionamientoService,
+    private auth: LoginserviceService
   ) {}
 
   async login(form: NgForm) {
@@ -24,31 +26,49 @@ export class LoginPage {
       return;
     }
 
-    this.isLoading = true;
+    // this.isLoading = true;
     const loading = await this.loadingCtrl.create({
       message: 'Iniciando sesión...'
     });
     await loading.present();
 
-    // Simulación de autenticación (reemplazar con tu lógica real)
-    setTimeout(async () => {
-      this.isLoading = false;
-      await loading.dismiss();
+    const email = form.value.email;
+    const contrasena = form.value.password
 
-      let credencialesCorrectas = false;
+    this.auth.login(email, contrasena).subscribe(
+      async(resp) => {
+        await loading.dismiss();
 
-if (form.value.email === 'admin@girosoft.com' && form.value.password === 'Dismuto11') {
-  this.redireccionamiento.redireccion('/panel');
-  credencialesCorrectas = true;
-} else if (form.value.email === 'user@girosoft.com' && form.value.password === 'Usuario11') {
-  this.redireccionamiento.redireccion('/entrada');
-  credencialesCorrectas = true;
-}
+        // Guardar sesión y redireccionar
+        this.auth.guardarSesion(resp.user);
+        this.redireccionamiento.redireccion('/panel');
+      },
 
-if (!credencialesCorrectas) {
-  this.showAlert('Error', 'Email o contraseña incorrectos');
-}
-  }, 1500);
+      async(err) => {
+        await loading.dismiss();
+        this.showAlert("Error", "Usuario o contraseña incorrectos");
+      }
+    );
+  
+
+    //     setTimeout(async () => {
+    //       this.isLoading = false;
+    //       await loading.dismiss();
+
+    //       let credencialesCorrectas = false;
+
+    // if (form.value.email === 'admin@girosoft.com' && form.value.password === 'Dismuto11') {
+    //   this.redireccionamiento.redireccion('/panel');
+    //   credencialesCorrectas = true;
+    // } else if (form.value.email === 'user@girosoft.com' && form.value.password === 'Usuario11') {
+    //   this.redireccionamiento.redireccion('/entrada');
+    //   credencialesCorrectas = true;
+    // }
+
+    // if (!credencialesCorrectas) {
+    //   this.showAlert('Error', 'Email o contraseña incorrectos');
+    // }
+    //   }, 1500);
   }
 
   async showAlert(header: string, message: string) {

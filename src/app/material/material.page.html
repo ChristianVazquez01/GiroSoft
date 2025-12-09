@@ -27,10 +27,10 @@
           <ion-label>Almacén</ion-label>
         </ion-item>
         
-        <ion-item class="menu-item"(click)="nav('/configuracion')">
+        <!-- <ion-item class="menu-item"(click)="nav('/configuracion')">
           <ion-icon name="settings" slot="start"></ion-icon>
           <ion-label>Configuración</ion-label>
-        </ion-item>
+        </ion-item> -->
       </ion-list>
     </aside>
 
@@ -42,64 +42,112 @@
           <img src="../../assets/icon/girolog.png" alt="">
           <ion-buttons slot="end">
             <ion-button>
-              <ion-icon name="notifications-outline"></ion-icon>
-            </ion-button>
-            <ion-button>
               <ion-icon name="person-circle-outline"></ion-icon>
+              <span>{{ nombreUsuario }}</span>
+            </ion-button>
+            <ion-button (click)="nav('/home')">
+              <ion-icon name="log-out-outline" ></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
+      <!-- <table class="listado"> 
+			<thead>
+				<tr>
+					<th><h1>ID</h1></th>
+					<th><h1>Nombre</h1></th>
+					<th><h1>Estado</h1></th>
+					<th colspan="2"><h1>Opciones</h1></th>
+				</tr>
+			</thead>
+			<tbody>
+        <tr *ngFor="let item of inventario">
+          <td>{{ item.inv_id }}</td>
+          <td>{{ item.mat_nombre }}</td>
+          <td>{{ item.inv_cantidad }} unidades</td>
+          <td class="icono"><ion-icon slot="icon-only" name="create-outline" (click)="editar(item)" style="cursor: pointer;"></ion-icon></td>	
+					<td class="icono"><ion-icon slot="icon-delete" name="trash-outline" (click)="eliminar(item.inv_id)" style="cursor: pointer;"></ion-icon></td>
+        </tr>
+			</tbody>
+		</table> -->
+    <div class="table-container">
+  <table class="modern-table">
+    <thead>
+      <tr>
+        <th class="header-id">ID</th>
+        <th class="header-name">Nombre</th>
+        <th class="header-status">Estado</th>
+        <th colspan="2" class="header-actions">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inventario" class="table-row">
+        <td class="cell-id">{{ item.inv_id }}</td>
+        <td class="cell-name">{{ item.mat_nombre }}</td>
+        <td class="cell-status">
+          <span class="status-badge">{{ item.inv_cantidad }} unidades</span>
+        </td>
+        <td class="cell-action">
+          <ion-icon 
+            name="create-outline" 
+            (click)="editar(item)" 
+            class="action-icon edit-icon"
+            title="Editar">
+          </ion-icon>
+        </td>	
+        <td class="cell-action">
+          <ion-icon 
+            name="trash-outline" 
+            (click)="eliminar(item.inv_id)" 
+            class="action-icon delete-icon"
+            title="Eliminar">
+          </ion-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <!-- Formulario de edicion -->
+     <ion-card *ngIf="editando">
+      <ion-card-header>
+        <ion-card-title>Editar cantidad</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><b>Material:</b>{{ editando.mat_nombre }}</p>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="cantidadNueva" label="Nueva cantidad"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" (click)="guardarCambios()">Guardar</ion-button>
+        <ion-button expand="block" color="light" (click)="cancelarEdicion()">Cancelar</ion-button>
+
+      </ion-card-content>
+     </ion-card>
+
+
       <ion-content>
-        <!-- Tarjetas de resumen 
-        <div class="summary-cards">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Almacen</ion-card-title>
-              <ion-icon name="file-tray-full-outline"></ion-icon>
-            </ion-card-header>
-            <ion-card-content>
-              <h2></h2>
-              <p></p>
-            </ion-card-content>
-          </ion-card>
+        <div class="cards-container">
+  <!-- tus cards -->
+  <div class="card">
+    <div class="wrapper">
+      <img src="../../assets/img/cemento.jpg" class="cover-image" />
+    </div>
+    <h1 class="">Cemento</h1>
+    
+    <img src="../../assets/img/Cemento-cemex-bulto.png" class="character" />
+  </div>
 
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Añadir Usuario</ion-card-title>
-              <ion-icon name="person-add-sharp"></ion-icon>
-            </ion-card-header>
-            <ion-card-content>
-              <h2></h2>
-              <p></p>
-            </ion-card-content>
-          </ion-card>
-
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Generar Reporte</ion-card-title>
-              <ion-icon name="documents-sharp"></ion-icon>
-            </ion-card-header>
-            <ion-card-content>
-              <h2></h2>
-              <p></p>
-            </ion-card-content>
-          </ion-card>
-        </div>
-
-        
-        <ion-card class="main-card">
-          <ion-card-header>
-            <ion-card-title>BIENVENIDO</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="chart-placeholder">
-              
-              <p>Apii</p>
-            </div>
-          </ion-card-content>
-        </ion-card>-->
+<div class="card">
+    <div class="wrapper">
+      <img src="../../assets/img/unnamed.jpg" class="cover-image" />
+    </div>
+    <h1>Pinzas</h1>
+    <img src="../../assets/img/pinza.png" class="character" />
+  </div>
+</div>
       </ion-content>
     </main>
   </div>

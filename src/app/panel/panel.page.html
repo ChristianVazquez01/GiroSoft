@@ -16,7 +16,7 @@
           <ion-icon name="add-sharp" slot="start"></ion-icon>
           <ion-label>Agregar material</ion-label>
         </ion-item>
-        <!--
+        
         <ion-item class="menu-item" (click)="nav('/material')">
           <ion-icon name="cube" slot="start"></ion-icon>
           <ion-label>Materiales</ion-label>
@@ -27,10 +27,10 @@
           <ion-label>Almacén</ion-label>
         </ion-item>
         
-        <ion-item class="menu-item"(click)="nav('/configuracion')">
+        <!-- <ion-item class="menu-item"(click)="nav('/configuracion')">
           <ion-icon name="settings" slot="start"></ion-icon>
           <ion-label>Configuración</ion-label>
-        </ion-item>-->
+        </ion-item> -->
       </ion-list>
     </aside>
 
@@ -43,6 +43,7 @@
           <ion-buttons slot="end">
             <ion-button>
               <ion-icon name="person-circle-outline"></ion-icon>
+              <span>{{nombreUsuario}}</span>
             </ion-button>
             <ion-button (click)="nav('/home')">
               <ion-icon name="log-out-outline" ></ion-icon>
@@ -106,18 +107,32 @@
     </html>
   "
   width="100%" 
-  height="100%"
+  height="200"
   frameborder="0"
   style="border: 1px solid #ddd; border-radius: 8px;">
 </iframe>
+
           </ion-card>
 
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Añadir Usuario</ion-card-title>
-              <ion-icon name="person-add-sharp"></ion-icon>
+              
             </ion-card-header>
             <ion-card-content>
+              
+              <br>
+              <div class="contenedor">
+                <ul>
+                  <li>BIENVENIDO a GIROSOFT</li>
+                  <li>En donde tu gestión</li>
+                  <li>hace la diferencia!</li>
+                  <li>organizar hoy, triunfar mañana</li>
+                  <li>el orden es la base del éxito</li>
+                  <li>Buena suerte y un exelente dia</li>
+                  <li>Transforma tu forma de gestionar con GiroSoft</li>
+                  
+                </ul>
+              </div>
               <h2></h2>
               <p></p>
             </ion-card-content>
@@ -127,6 +142,19 @@
             <ion-card-header>
               <ion-card-title>Generar Reporte</ion-card-title>
               <ion-icon name="documents-sharp"></ion-icon>
+              <!-- En alguna parte de tu template -->
+<ion-button 
+  expand="block" 
+  color="primary" 
+  (click)="descargarPDF()"
+  [disabled]="!registros || registros.length === 0">
+  <ion-icon name="download-outline" slot="start"></ion-icon>
+  Descargar Registros PDF
+</ion-button>
+
+<ion-note>
+  <small>Registros cargados: {{ registros.length }}</small>
+</ion-note>
             </ion-card-header>
             <ion-card-content>
               <h2></h2>
@@ -141,34 +169,12 @@
             <ion-card-title>BIENVENIDO</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <div id="clima-salamanca" style="font-family: Arial; background: #f0f8ff; padding: 15px; border-radius: 10px; max-width: 300px;">
-  <h3 style="color: #1e88e5; margin-top: 0;">Clima en Salamanca, Gto.</h3>
-  <div id="resultado-clima">Cargando datos del clima...</div>
-</div>
-
-<script>
-  const apiKey = "a2308cb1003d3f95b363f5956febeffe";  // Tu API Key
-  const ciudadId = "3986984";  // ID de Salamanca, Gto.
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?id=${ciudadId}&units=metric&lang=es&appid=${apiKey}`)
-    .then(response => {
-      if (!response.ok) throw new Error("Error en la respuesta");
-      return response.json();
-    })
-    .then(data => {
-      const climaHTML = `
-        <p>🌡️ <b>Temperatura:</b> ${data.main.temp}°C</p>
-        <p>☁️ <b>Condición:</b> ${data.weather[0].description}</p>
-        <p>💧 <b>Humedad:</b> ${data.main.humidity}%</p>
-        <p>🌬️ <b>Viento:</b> ${data.wind.speed} km/h</p>
-      `;
-      document.getElementById("resultado-clima").innerHTML = climaHTML;
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      document.getElementById("resultado-clima").innerHTML = "No se pudo cargar el clima. Actualiza la página.";
-    });
-</script>
+            <iframe 
+  [src]="pdfUrl"
+  width="100%" 
+  height="600"
+  frameborder="0">
+</iframe>
           </ion-card-content>
         </ion-card>
       </ion-content>
